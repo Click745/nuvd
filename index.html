@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Кликер и экран загрузки</title>
+<style>
+  /* Общие стили */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+  }
+
+  /* Экран загрузки */
+  #loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 9999;
+  }
+
+  /* Размер изображения загрузочного экрана */
+  #loading-image {
+    /* Можно оставить как есть или изменить размеры ниже */
+    max-width: none; /* отключить ограничение по ширине */
+    
+    /* Размеры для загрузочного изображения (можете изменить) */
+    width: 480px;   /* <-- укажите желаемую ширину в пикселях */
+    height: 1000px; /* <-- укажите желаемую высоту в пикселях */
+  }
+
+  /* Общие стили для всех изображений (если есть) */
+  img {
+    width: 2400px;   /* Можно оставить или изменить под свои нужды */
+    height: 1080px;   /* Можно оставить или изменить под свои нужды */
+    object-fit: cover; /* чтобы сохранить пропорции и заполнить размеры */
+  }
+
+  /* Основной контент скрыт по умолчанию */
+  #main-content {
+    display: none;
+    padding: 20px;
+    
+    /* Стиль для фона главного экрана (обои) */
+    background-image: url('img/12.jpg'); /* <-- сюда вставьте путь к вашему изображению для обоев */
+    
+    /* Размеры фона можно задать через CSS, например, так:
+       background-size: cover; или конкретные размеры
+     */
+    
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* Размер обоев в пикселях (замените ниже) */
+    width: 3000px;
+    height: 2400px ;
+    
+}
+</style>
+</head>
+<body>
+
+<!-- Экран загрузки -->
+<div id="loading-screen">
+  <img id="loading-image" src="" alt="Загрузка..." />
+</div>
+
+<!-- Основной контент -->
+<div id="main-content">
+  <h1>Добро пожаловать!</h1>
+  
+  <!-- Место для вашей фотографии на главном экране -->
+  <!-- Вставьте сюда ваше изображение -->
+  <div style="margin-bottom:20px;">
+      <h2>Ваша фотография</h2>
+      <img src="img/12.jpg" alt="Моя фотография" style="max-width:100%; height:auto;">
+      <!-- Замените path/to/your/photo.jpg на путь к вашему изображению -->
+      
+      <!-- Размер вашей фотографии можно задать через CSS или атрибуты -->
+      
+      <!-- Например, чтобы задать размер вручную:
+      style="width:300px; height:auto;"
+      -->
+      
+      <!-- Или оставьте автоматическим -->
+      
+      <!-- Также можно оставить место для вставки фото без рамки -->
+      
+      <!-- ВАЖНО! Для правильного отображения убедитесь, что путь к файлу правильный -->
+      
+      <!-- Если хотите задать конкретный размер фото:
+      <img src="path/to/your/photo.jpg" alt="Моя фотография" style="width:300px;">
+      -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
+</div>
+
+<!-- Кнопка кликера -->
+<button id="clicker-btn">Кликер</button>
+</div>
+
+<script>
+/* Массив изображений для загрузочного экрана */
+// Вставьте свои изображения из папки img
+const images = [
+  'img/5.jpg', // замените на свой путь
+  'img/6.jpg',
+  'img/7.jpg',
+  'img/8.jpg',
+  'img/9.jpg',
+  'img/10.jpg',
+  'img/11.jpg'
+];
+
+const loadingImage = document.getElementById('loading-image');
+const loadingScreen = document.getElementById('loading-screen');
+const mainContent = document.getElementById('main-content');
+
+let currentImageIndex = -1;
+
+// Функция для показа следующего изображения
+function showNextImage() {
+  currentImageIndex++;
+  
+  if (currentImageIndex >= images.length) {
+    // Все изображения показаны, скрываем экран загрузки
+    loadingScreen.style.display = 'none';
+    
+    // Показываем основной контент
+    mainContent.style.display = 'block';
+    
+    return;
+  }
+  
+  // Устанавливаем текущую картинку
+  loadingImage.src = images[currentImageIndex];
+  
+  // Запланировать следующий показ через 2 секунды
+  setTimeout(showNextImage,2000);
+}
+
+// Запускаем показ изображений при загрузке страницы
+window.onload = () => {
+  
+  // Начинаем цикл показа изображений
+  showNextImage();
+};
+</script>
+
+</body>
+</html>
